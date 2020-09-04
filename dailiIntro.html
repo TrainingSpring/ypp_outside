@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<!--用户协议/隐私-->
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="iconfont/iconfont.css">
+		<style>
+			textarea::-webkit-input-placeholder,input::-webkit-input-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea::-moz-placeholder,input::-moz-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea:-moz-placeholder,input:-moz-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea:-ms-input-placeholder,input:-ms-input-placeholder{ 
+	            color:rgb(204,204,204);
+	        }
+			/*头部样式*/		
+			.mui-bar.mui-bar-nav{height: 1.38rem;width: 100%;position:fixed;top:0;background-color: transparent;}			
+			.mui-bar{padding-left: 0.2rem;padding-right: 0.2rem;box-shadow: none;}
+			.seach-box{font-weight: bold;z-index: -1;width: 200px;position: absolute;bottom: 10px;left: 50%;margin-left: -100px;text-align: center;font-size: 18px;color:#fff;}
+			.mui-bar .mui-pull-left{width: 25px;height: 25px;background: url(images/community/icon_return_white@2x.png);background-size: 100% 100%;position: absolute;bottom: 10px;}
+			.mui-bar .mui-pull-right{position: absolute;bottom: 10px;right: 10px;font-size: 15px;color:#fff}
+			img{vertical-align: middle;}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+	    	<a class="mui-pull-left mui-action-back"></a>
+			<div class="seach-box">代理介绍</div>
+	    </header>
+		<div id="refreshContainer">
+			<img src="./images/wd/wd_dljs1@2x.png" width="100%">
+		</div>
+		
+	</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		let header = document.getElementById("header");
+		window.onscroll = function(e){
+			let scrollY = e.currentTarget.scrollY;
+			let head_height = header.clientHeight;
+			let b = scrollY/(head_height * 5) < 1 ? scrollY/(head_height * 5) : 1;
+			header.style.backgroundColor = "rgba(249,95,35," + b + ")";
+		}						
+	</script>
+
+</html>

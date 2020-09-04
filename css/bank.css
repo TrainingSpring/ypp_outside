@@ -1,0 +1,36 @@
+html{
+	font-family: "微软雅黑","microsoft yahei";
+}
+header{
+	height:175px;
+	width: 100%;
+	background-image:linear-gradient(to right,rgb(250,151,30),rgb(246,94,35)) ;
+}
+header .back{
+	padding-top: 40px;
+	position:relative;
+	text-align: center;
+}
+header .back .title{
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+}
+header .back img{
+	position: absolute;
+	top: 40px;
+	left: 20px;
+}
+#submit{
+	background-color: rgb(249,95,35);
+	color:white;
+	line-height: 65px;
+	text-align: center;
+	width: 80%;
+	border-radius: 32.5px;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 30px;
+	left: 10%;
+	font-size: 18px;
+}

@@ -1,0 +1,292 @@
+<!-- 首页 用户活动(领取1元后的弹窗活动) -->
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,viewport-fit=cover, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link href="css/mui.css" rel="stylesheet" />
+		<style type="text/css">
+			body{
+				background-color: rgba(0,0,0,0) !important;
+				position: relative;
+			}
+			#share{
+				background-color: rgba(0,0,0,0.3) !important;
+				position:flex;
+				top: 0;
+				left: 0;
+			}
+			#content{
+				width: 100vw;
+				height: 100vh;
+			}
+			#bg{
+				position:relative;
+			}
+			#bg img{
+				width: 100vw;
+				position: absolute;	
+				top: 18.4vw;
+			}
+			#close{
+				width: 25px;
+				height: 25px;
+				background-image: url(images/active/cancel.png);
+				position: absolute;
+				background-size: cover;
+				right: 13vw;
+				top: 10vh;
+				z-index: 999;
+			}
+			#link{
+				width: 45.3333333vw;
+				height: 8vw;
+				background-color: #FFFDF6;
+				border-radius: 5px;
+				border: 1px solid #E3E1DB;
+				position: absolute;
+				top: 78.93333vw;
+				left: 16vw;
+				font-size: 12px;
+				color: #A5A5A5;
+				line-height: 8.53333vw;
+				text-indent: 1em;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+				padding-right: 5px;
+				
+			}
+			#copy{
+				position: absolute;
+				top: 78.93333vw;
+				width: 18.66666vw;
+				height: 8vw;
+				background-image:linear-gradient(#FFE16D,#FEC452) ;
+				text-align: center;
+				line-height: 8vw;
+				color: white;
+				border-radius: 5px;
+				font-size: 14px;
+				right:18.66666vw;
+				z-index: 999;
+			}
+			#button{
+				opacity: 0;
+				position: absolute;
+				width: 80vw;
+				height: 10.66666vw;
+				line-height: 40px;
+				text-align: center;
+				color: white;
+				left: 10vw;
+				top: 156.5vw;
+				background-image:linear-gradient(#FFE26E,#FFE26E) ;
+				color:#FF0E2C;
+				border-radius: 20px;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			* {
+			-webkit-touch-callout:none;
+			-webkit-user-select:none;
+			-khtml-user-select:none;
+			-moz-user-select:none;
+			-ms-user-select:none;
+			user-select:none;
+			}
+			#newuser .close{
+				display: block;
+				width: 25px;
+				height: 25px;
+				margin: 0 auto;
+				background:url(images/index/close.png) no-repeat;
+				background-size: 100%;
+				margin-top:10px;
+			}
+			#goTixian{
+				width: 90px;
+				height: 90px;
+				position: absolute;
+				top: 225px;
+				left: 83px;
+				border-radius: 50%;
+			}
+			#newuser{display: none;position: fixed;left: 0px;top: 0px;width: 100%;height: 100%;background-color: rgba(0,0,0,.3);z-index: 102;}
+			#newuser .giftBox{position: absolute;width: 256px;left: 50%;top: calc(50% - 169px - 100px);margin-left: -128px;
+			background: transparent;}
+			#newuser .giftContent{width: 100%;height: 338px;background: url(./images/wd/tc_gift@2x.png) no-repeat;-webkit-background-size: 100% 100%;
+			background-size: 100% 100%;color: rgb(255,95,35);font-size: 12px;text-align: center;padding-top: 60px;}
+			#newuser .giftContent p{font-size: 30px;color: rgb(208,8,8);margin-bottom: 10px;}
+			#newuser .giftBtns{width:100%;display: flex;justify-content: space-between;margin-top: 20px;}
+			#newuser .giftBtns span{width: 100px;height: 40px;background-color: transparent;line-height: 40px;text-align: center;font-size: 16px;color:rgb(255,95,35);border-radius: 3px;border: 1px solid rgb(255,95,35);}
+		</style>
+	</head>
+
+	<body>
+		<div id="newuser">
+			<div class="giftBox">
+				<div class="giftContent"><!-- <p>1</p>元 --></div>
+				<!-- <div class="giftBtns">
+					<span id="afterLook">再看看</span>
+					<span id="goTixian">立即提现</span>
+				</div> -->
+				<div id="goTixian">
+				</div>
+				<span class="close" id="afterLook"></span>
+			</div>
+		</div>
+		<div id="share" style="display: none;">
+			<div id="close">
+			
+			</div>
+			<div id="content">
+				<div id="bg"><img src="./images/active/bg.png" alt=""></div>
+				<div id="link"></div>
+				<div id="copy">复制链接</div>
+			</div>
+			<div id="button">
+				我 要 推 广
+			</div>
+		</div>
+		
+		<script src="js/mui.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/tool.js"></script>
+		<script type="text/javascript">
+			let button = document.getElementById("button");
+			let close = document.getElementById("close");
+			let link = document.getElementById("link");
+			let copy = document.getElementById("copy");
+			mui.init()
+			// alert(1)
+			function init(data={}){
+				let current = mui.currentWebview;
+				let showType = data.type || current.type;
+				let user = current.user
+				console.log("current: " + JSON.stringify(current))
+				console.log("user:" + JSON.stringify(user))
+				// let cons = data.cons||current.cons;
+				let url = current.src;
+				
+				mui.back = function(event){
+					return  0 ;
+				}
+				 // type === 1 加载领红包界面
+				 // type === 2 加载推广界面
+				if(showType == 1 ){
+					document.querySelector('#newuser').style.display = "block";
+					current.show();
+				}else if(showType == 2){
+					current.show();
+					document.querySelector("#share").style.display = "block";
+				}else{
+					return 0;
+				}
+				/** 关于新用户福利 **/
+				// 新用户领福利点击取消
+				mui('#newuser').on('tap','#afterLook',function(){
+					document.querySelector('#newuser').style.display = 'none';
+					if(JSON.stringify(user)!=="{}"&& !!user){
+						document.querySelector("#share").style.display = "block";
+					}else{
+						current.close();
+					}
+				}) 
+				// 新用户领福利点击去提现
+				let clicked = 0; // 控制重复点击
+				mui('#newuser').on('tap','#goTixian',function(){
+					console.log(clicked);
+					if(clicked)return false;
+					if(JSON.stringify(user) != "{}"&&!!user){
+						clicked = 1;
+						mui.ajax(proxyAjax("yppProxyWithdrawRecord/applyWithdrawRegisterGift"),{
+							data:{
+								'uid':user.id
+							},
+							type:'get',//HTTP请求类型
+							timeout:10000,//超时时间设置为10秒
+							success:function(data){
+								let opener = plus.webview.getWebviewById("main.html");
+								if(data.code==-2){
+									mui.toast(data.msg); 
+									// mui.openWindow('set_zhifubao.html');
+									mui.openWindow(url+'setUserInfo.html');
+									clicked = 0;
+								}else if(data.code==1){
+									document.querySelector('#newuser').style.display = 'none';
+									// document.querySelector('.newGift').style.display = 'block';
+									mui.fire(mui.currentWebview.opener(), 'active:2',{force:true});
+									mui.toast(data.result);
+								}else{
+									mui.toast(data.msg);
+								}
+							},
+							error:function(xhr,type,errorThrown){
+								if(type === "timeout"){
+									return mui.toast("网络连接超时");
+								}else{
+									return console.log("无法连接服务器");
+								}
+							}
+						})
+					}else{
+						mui.toast('请先登录！');
+						mui.openWindow(url+'login.html',{waiting:{
+								autoShow:false
+							}});
+					}
+				})
+				/** 关于推广界面 **/
+				if(!user||JSON.stringify(user) == "{}")return;
+				link.innerHTML = ('http://api.a345.cn/share/register?uid='+user.id)
+				// 关闭当前页面
+				close.addEventListener("tap",function(){
+					// mui.fire(mui.currentWebview.opener(),"close");
+					current.close();
+				})
+				// 复制链接
+				copy.addEventListener("tap",function(){
+					var copy_content = link.innerHTML;
+					//判断设备是android还是ios
+					if(mui.os.ios){ //ios
+						var UIPasteboard  = plus.ios.importClass("UIPasteboard");
+						//这步会有异常因为UIPasteboard是不允许init的，init的问题会在新版中修改 
+						var generalPasteboard = UIPasteboard.generalPasteboard();
+						// 设置/获取文本内容: www.bcty365.com
+						generalPasteboard.setValueforPasteboardType(copy_content, "public.utf8-plain-text");
+						var value = generalPasteboard.valueForPasteboardType("public.utf8-plain-text");  
+						mui.toast("复制链接成功");  //自动消失提示框
+					}else{  //android
+						var Context = plus.android.importClass("android.content.Context");
+						var main = plus.android.runtimeMainActivity();
+						var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
+						plus.android.invoke(clip,"setText",copy_content);
+						mui.toast("复制链接成功");  //自动消失提示框
+					}
+				})
+				// 我要推广页面
+				button.addEventListener('tap',function(){
+					mui.openWindow(url+'my_invite.html',{waiting:{
+						autoShow:false
+					}});
+					setTimeout(()=>{
+						// mui.fire(mui.currentWebview.opener(),"close");
+						current.close();
+					},1000)
+				})
+			}
+			window.addEventListener("send:type",function(e){
+				let data = e.detail;
+				init(data)
+			})
+			
+			mui.plusReady(function () {
+			    init();
+			})
+		</script>
+	</body>
+
+</html>

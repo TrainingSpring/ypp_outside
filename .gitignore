@@ -1,0 +1,5 @@
+unpackage/debug
+unpackage/release
+unpackage/resources
+.confirmed_dependencies
+.dependencies

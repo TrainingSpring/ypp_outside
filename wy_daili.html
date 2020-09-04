@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="iconfont/iconfont.css">
+		<style>
+			textarea::-webkit-input-placeholder,input::-webkit-input-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea::-moz-placeholder,input::-moz-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea:-moz-placeholder,input:-moz-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea:-ms-input-placeholder,input:-ms-input-placeholder{ 
+	            color:rgb(204,204,204);
+	        }
+			/*头部样式*/	
+			body{background-color: #f5f6f5;}
+			.mui-bar-nav~.mui-content{padding-top: 1.34rem;overflow: auto; height: auto;padding-bottom: 50px;}	
+			.mui-bar.mui-bar-nav{height: 3.93rem;width: 100%; position:relative;background: url(images/page/cpjs_bg@2x.png) no-repeat;background-size: 100% 100%;}			
+			.mui-bar{padding-left: 0.2rem;padding-right: 0.2rem;box-shadow: none;}
+			.seach-box{font-weight: bold;z-index: -1;width: 200px;position: absolute;top: 35px;left: 50%;margin-left: -100px;text-align: center;font-size: 18px;color:#fff;}
+			.mui-bar .mui-pull-left{width: 25px;height: 25px;background: url(images/community/icon_return_white@2x.png);background-size: 100% 100%;position: absolute;top: 35px;}
+			.mui-bar .mui-pull-right{position: absolute;bottom: 10px;right: 10px;font-size: 15px;color:#fff}
+			#refreshContainer{position: relative;margin:-70px 10px 0;z-index: 100;background-color: #f5f6f5;}
+			.blacktop{background: url(images/wd/wydl_box@2x.png) center center;padding: 25px 10px 10px;border-radius: 3px;margin-bottom: 50px;color:#fff;}
+			.blacktop h4{font-size: 14px;margin-bottom: 35px;}
+			.blacktop h4 img{height: 14px;margin: 0 5px 0 10px;}
+			.blacktop h4 span{color: rgb(255,95,35);}
+			.blacktop p{font-size: 10px;}
+			.blacktop p img{height: 16px;}
+			.level{color: rgb(51,51,51);background-color: #fff;padding: 10px 0;margin: 15px 0;}
+			.level h4{height: 22px;background: url(./images/wd/wydl_biaoqian@2x.png) no-repeat left center;line-height: 22px;color: rgb(0,0,0);font-weight: 600;font-size: 13px;}
+			.level h4 img{height: 14px;margin: 0 10px;}
+			.level h4 span{font-size: 10px;color: rgb(102,102,102);margin-left: 15px;}
+			.level div{color: rgb(51,51,51);font-size: 10px;padding: 15px 20px;padding-right: 60px;position: relative;line-height: 18px;}
+			.level div .btn{position: absolute;right: 10px;top: 26px;background-color: rgb(255,95,35);border-radius: 3px;
+			width: 45px;height: 22px;line-height: 22px;text-align: center;color: #fff;font-size: 12px;}
+			
+			.popup{display: none;position: fixed;width: 100%;height: 177px;background-color: #fff;left: 0;bottom: 0;border-radius: 5px 5px 0 0;background-color: #fff;z-index: 103;}
+			.popup .phone{position: absolute;top: -42.5px;right: 120px;}
+			.popup .phone img{height: 85px;}
+			.popup .lxqq{position: absolute;top: -42.5px;right: 20px;}
+			.popup .lxqq img{height: 85px;}
+			.popup .women{position: absolute;left: 0px;bottom: 0;}
+			.popup .women img{width: 120px;}
+			.popup .bottm{position: absolute;left: 0px;bottom: 0;text-align: center;width: 100%;}
+			.popup .bottm img{height: 19px;}
+			.lxqqs,.phones{float: right;margin-top: 48px;margin-right: 10px;}
+			.lxqqs img,.phones img{height: 7px;}
+			.lxqqs h4,.phones h4{text-align: center;font-weight: bold;margin-bottom: 6px;}
+			.mask{width: 100%;height: 100%;position: fixed;background: rgba(0,0,0,0.7);z-index: 102;left: 0;top: 0;}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+	    	<a class="mui-pull-left mui-action-back"></a>
+			<div class="seach-box">我要代理</div>
+	    </header>
+		<!-- <div style="height:3.93rem"></div> -->
+		<div id="refreshContainer">
+			<div class="blacktop">
+				<h4>当前代理级别：<img src="./images/wd/wydl_hg_big@2x.png" ><span>青铜级</span></h4>
+				<p><img src="./images/wd/tx_notice@2x.png" >无游戏代理权，享有直属成员升级非青铜级代理500元奖励。</p>
+			</div>
+			<div class="level">
+				<h4><img src="./images/wd/wydl_hg_small@2x.png" >黄金级代理<span>一万代理费用</span></h4>
+				<div>
+					<p>可代理一款常规游戏，享有该款游戏平台交易总流水5%提成；并且可获得直属成员升级代理费的20%提成。</p>
+					<span class="btn">升级</span>
+				</div>
+			</div>
+			<div class="level">
+				<h4><img src="./images/wd/wydl_hg_small@2x.png" >铂金级代理<span>二万代理费用</span></h4>
+				<div>
+					<p>可代理一款中级IP游戏，享有该款游戏平台交易总流水5%提成；并且可获得直属成员升级代理费的30%提成。</p>
+					<span class="btn">升级</span>
+				</div>
+			</div>
+			<div class="level">
+				<h4><img src="./images/wd/wydl_hg_small@2x.png" >钻石级代理<span>三万六代理费用</span></h4>
+				<div>
+					<p>可任选两款游戏代理，享有该款游戏平台交易总流水5%提成；并且可获得直属成员升级代理费的40%提成。</p>
+					<span class="btn">升级</span>
+				</div>
+			</div>
+			<div class="level">
+				<h4><img src="./images/wd/wydl_hg_small@2x.png" >星耀级代理<span>十万代理费用</span></h4>
+				<div>
+					<p>可任选三款游戏代理，享有该款游戏平台交易总流水5%提成；并且可获得直属成员升级代理费的50%提成。</p>
+					<span class="btn">升级</span>
+				</div>
+			</div>
+		</div>
+		<div class="popup">
+			<div class="women"><img src="./images/wd/wydl_tc_kf@2x.png" ></div>
+			<div class="lxqq"><img src="./images/wd/wydl_tc_qq@2x.png" ></div>
+			<div class="phone"><img src="./images/wd/wydl_tc_phone@2x.png" ></div>
+			<div class="bottm"><img src="./images/wd/wydl_tc_quantian@2x.png" ></div>
+			<div class="lxqqs">
+				<h4>联系QQ</h4>
+				<p onclick="lxkf(739283778)">739283778 <img src="./images/wd/wydl_tc_more@2x.png"></p>
+				<p onclick="lxkf(2837488917)">11486111 <img src="./images/wd/wydl_tc_more@2x.png"></p>
+			</div>
+			<div class="phones">
+				<h4>拨打电话</h4>
+				<p onclick="bddh(0818-6691106)">0818-6691106 <img src="./images/wd/wydl_tc_more@2x.png"></p>
+				<p onclick="bddh(15983866288)">15983866288 <img src="./images/wd/wydl_tc_more@2x.png"></p>
+				<p onclick="bddh(19182855222)">19182855222 <img src="./images/wd/wydl_tc_more@2x.png"></p>
+			</div>
+		</div>
+		<div id="mask" class="mask mui-hidden"></div>
+	</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script>
+		function bddh(phone){
+			var btnArray=['拨打','取消'];
+//             var phone="028-65189869";
+            mui.confirm('是否拨打'+phone+'?','提示',btnArray,function(e){
+                if(e.index == 0){
+                    plus.device.dial(phone,false);
+                }
+            });
+		}
+		function lxkf(qq){
+					if(mui.os.ios) {
+						plus.runtime.launchApplication({
+								action: "mqq://im/chat?chat_type=wpa&uin="+qq+"&version=1&src_type=web"
+							},
+							function(e) {
+								plus.nativeUI.confirm("检查到您未安装QQ，请先到appstore搜索下载?", function(i) {
+									if(i.index == 0) {
+										iosAppstore("itunes.apple.com/cn/app/mqq/");
+									}
+								});
+							})
+		
+					} else if(mui.os.android) {
+						var main = plus.android.runtimeMainActivity();
+			            var Intent = plus.android.importClass('android.content.Intent'); 
+			            var Uri = plus.android.importClass('android.net.Uri'); 
+			            var intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin="+qq)); 
+			            main.startActivity(intent);
+		//	            plus.runtime.launchApplication({
+		//                  pname: "com.tencent.mobileqq",
+		//                  extra: {
+		//                      url: "mqqwpa://im/chat?chat_type=wpa&uin=474076215&version=1&src_type=web&web_src=oicqzone.com"
+		//                  }
+		//              }, function(e) {
+		//                  plus.nativeUI.confirm("检查到您未安装QQ，请先到应用商店搜索下载？", function(i) {
+		//                      if (i.index == 0) {
+		//                          androidMarket("com.tencent.mobileqq");
+		//                      }
+		//                  });
+		//              });
+					}
+				};
+		var mask =document.getElementById('mask');
+		$('.btn').on('tap',function(){
+			$('.popup').css('display','block');
+			mask.classList.remove("mui-hidden");
+		})
+		$('.mask').on('tap',function(){
+			$('.popup').css('display','none');
+			mask.classList.add("mui-hidden");
+		})
+		// 优化顶部导航
+		let header = document.getElementById("header");
+		window.onscroll = function(e){
+			let scrollY = e.currentTarget.scrollY;
+			let head_height = header.clientHeight;
+			let b = scrollY/(head_height * 5) < 1 ? scrollY/(head_height * 5) : 1;
+			header.style.backgroundColor = "rgba(249,95,35," + b + ")";
+		}
+	</script>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="iconfont/iconfont.css">
+		<style>
+			textarea::-webkit-input-placeholder,input::-webkit-input-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea::-moz-placeholder,input::-moz-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea:-moz-placeholder,input:-moz-placeholder{
+	            color:rgb(204,204,204);
+	        }
+	        textarea:-ms-input-placeholder,input:-ms-input-placeholder{ 
+	            color:rgb(204,204,204);
+	        }
+			/*头部样式*/		
+			.mui-bar-nav~.mui-content{padding-top: 1.34rem;overflow: auto;height: auto;padding-bottom: 50px;}	
+			.mui-bar.mui-bar-nav{height: 1.38rem;width: 100%;position:relative;background: url(images/top_bg@2x.png) no-repeat;background-size: 100% 100%;}			
+			.mui-bar{padding-left: 0.2rem;padding-right: 0.2rem;box-shadow: none;}
+			.seach-box{font-weight: bold;z-index: -1;width: 200px;position: absolute;bottom: 10px;left: 50%;margin-left: -100px;text-align: center;font-size: 18px;color:#fff;}
+			.mui-bar .mui-pull-left{width: 25px;height: 25px;background: url(images/icon_return_white@2x.png);background-size: 100% 100%;position: absolute;bottom: 10px;}
+			#refreshContainer{background-color: #f9f9fb;}
+			
+			.iview-item{background-color: #fff;padding: 0 10px;position: relative;line-height: 50px;}
+			.iview-item img{vertical-align: middle;height: 25px;margin-right: 5px;}
+			.iview-item.on{margin-top: 13px;}
+			.iview-item p{font-size: 15px;color:#000;display: block;}
+			.iview-item p span{font-size: 12px;color:rgb(255,95,35);border:1px solid rgb(255,95,35);width: 60px;text-align: center;line-height: 25px;
+			border-radius: 13px;margin-top: 12px;}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+	    	<a class="mui-pull-left mui-action-back"></a>
+			<div class="seach-box">人工客服</div>
+	    </header>
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+			<ul>
+				<li class="iview-item on">
+					<p>
+					<img src="images/service@2x.png"/> 充值问题：1058448168<span class="mui-pull-right" onclick="lxkf(1058448168)">联系</span>
+					</p>
+				</li>
+				
+				
+				<li class="iview-item on">
+					<p>
+					<img src="images/service@2x.png"/> 游戏问题：3477025915<span class="mui-pull-right" onclick="lxkf(3477025915)">联系</span>
+					</p>
+				</li>
+				<li class="iview-item on">
+					<p>
+					<img src="images/service@2x.png"/> 返利申请：1058448168<span class="mui-pull-right" onclick="lxkf(1058448168)">联系</span>
+					</p>
+				</li>
+				<li class="iview-item on">
+					<p>
+					<img src="images/qq@2x.png"/> 官方Q群：172746<span class="mui-pull-right" id="jrqq">加入</span>
+					</p>
+				</li>
+				<li class="iview-item on">
+					<p>
+					<img src="images/tel@2x.png"/> 客服电话：0818-6691025<span class="mui-pull-right" onclick="callKF('08186691025')">联系</span>
+					</p>
+				</li>
+				<li class="iview-item on">
+					<p>
+					<img src="images/e_mail@2x.png"/> 投诉邮箱：12221784@qq.com<span class="mui-pull-right" id="clone">复制</span>
+					</p>
+				</li>
+				
+			</ul>
+		</div>
+		
+	</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		mui.plusReady(function() {
+			
+		})
+		document.getElementById('jrqq').addEventListener('tap',function(){
+			var urls = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=172746&card_type=group&source=qrcode';
+			window.location.href = urls;
+		})
+		document.getElementById('clone').addEventListener('tap',function(){
+			copyToClip('12221784@qq.com');
+		})
+		function callKF(num){
+			plus.device.dial(num)
+		}
+		function copyToClip(text) {
+			if(mui.os.android == 1) {
+				var Context = plus.android.importClass("android.content.Context");
+				var main = plus.android.runtimeMainActivity();
+				var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
+				plus.android.invoke(clip, "setText", text);
+				mui.toast("邮箱复制成功");
+			} else {
+				var UIPasteboard = plus.ios.importClass("UIPasteboard");
+				//这步会有异常因为UIPasteboard是不允许init的，init的问题会在新版中修改 
+				var generalPasteboard = UIPasteboard.generalPasteboard();
+				// 设置/获取文本内容: www.bcty365.com
+				generalPasteboard.setValueforPasteboardType(text, "public.utf8-plain-text");
+				var value = generalPasteboard.valueForPasteboardType("public.utf8-plain-text");
+				mui.toast("邮箱复制成功");
+			}
+		}
+		function lxkf(qq){
+			if(mui.os.ios) {
+				plus.runtime.launchApplication({
+						action: "mqq://im/chat?chat_type=wpa&uin="+qq+"&version=1&src_type=web"
+					},
+					function(e) {
+						plus.nativeUI.confirm("检查到您未安装QQ，请先到appstore搜索下载?", function(i) {
+							if(i.index == 0) {
+								iosAppstore("itunes.apple.com/cn/app/mqq/");
+							}
+						});
+					})
+
+			} else if(mui.os.android) {
+				var main = plus.android.runtimeMainActivity();
+	            var Intent = plus.android.importClass('android.content.Intent'); 
+	            var Uri = plus.android.importClass('android.net.Uri'); 
+	            var intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin="+qq)); 
+	            main.startActivity(intent);
+//	            plus.runtime.launchApplication({
+//                  pname: "com.tencent.mobileqq",
+//                  extra: {
+//                      url: "mqqwpa://im/chat?chat_type=wpa&uin=474076215&version=1&src_type=web&web_src=oicqzone.com"
+//                  }
+//              }, function(e) {
+//                  plus.nativeUI.confirm("检查到您未安装QQ，请先到应用商店搜索下载？", function(i) {
+//                      if (i.index == 0) {
+//                          androidMarket("com.tencent.mobileqq");
+//                      }
+//                  });
+//              });
+			}
+		};
+	</script>
+</html>
